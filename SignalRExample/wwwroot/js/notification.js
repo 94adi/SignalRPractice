@@ -48,6 +48,7 @@ notificationBellDropdown.addEventListener("click", function (e) {
 function fulfilled() {
     console.log("Successfull connection");
     //load bell counter
+    connectionNotifications.send("LoadMessages");
 }
 
 function rejected() {

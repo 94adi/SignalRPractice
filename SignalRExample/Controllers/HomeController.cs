@@ -49,6 +49,21 @@ namespace SignalRExample.Controllers
             return View();
         }
 
+        public IActionResult DeathlyHallowRace()
+        {
+            return View();
+        }
+
+        public IActionResult HarryPotterHouse()
+        {
+            return View();
+        }
+
+        public IActionResult BasicChat()
+        {
+            return View();
+        }
+
 
     }
 }
