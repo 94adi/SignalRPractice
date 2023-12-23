@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using SignalRExample.Data;
 using SignalRExample.Hubs;
 using SignalRExample.Models;
+using SignalRExample.Models.ViewModel;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace SignalRExample.Controllers
 {
@@ -113,6 +116,35 @@ namespace SignalRExample.Controllers
         {
             var productList = _context.Orders.ToList();
             return Json(new { data = productList });
+        }
+
+        [Authorize]
+        public IActionResult Chat()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            ChatVM chatVM = new()
+            {
+                Rooms = _context.ChatRooms.ToList(),
+                MaxRoomAllowed = 4,
+                UserId = userId,
+            };
+
+            return View(chatVM);
+        }
+
+        public IActionResult AdvancedChat()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            ChatVM chatVM = new()
+            {
+                Rooms = _context.ChatRooms.ToList(),
+                MaxRoomAllowed = 4,
+                UserId = userId,
+            };
+
+            return View(chatVM);
         }
 
     }

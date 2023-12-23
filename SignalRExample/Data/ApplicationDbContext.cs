@@ -12,5 +12,7 @@ namespace SignalRExample.Data
         }
 
         public DbSet<Order> Orders { get;set; }
+
+        public DbSet<ChatRoom> ChatRooms { get;set; }
     }
 }
